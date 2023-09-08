@@ -1,4 +1,4 @@
-version: "3.6"
+version: '3.6'
 
 services:
   database:
@@ -9,4 +9,4 @@ services:
       - POSTGRES_USER=usr4lachesis
       - POSTGRES_DB=lachesis
     ports:
-      - "5432:5432"
+      - '5432:5432'

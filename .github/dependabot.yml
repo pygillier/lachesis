@@ -18,4 +18,3 @@ updates:
     # Every weekday
     schedule:
       interval: 'daily'
-

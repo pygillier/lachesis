@@ -1,9 +1,9 @@
-from django.db import models
-from model_utils.models import TimeStampedModel
-from model_utils.fields import StatusField
-from model_utils import Choices
 from django.conf import settings
+from django.db import models
 from django.utils.crypto import get_random_string
+from model_utils import Choices
+from model_utils.fields import StatusField
+from model_utils.models import TimeStampedModel
 
 
 class Redirection(TimeStampedModel):
