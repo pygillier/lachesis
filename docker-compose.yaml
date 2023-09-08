@@ -1,0 +1,12 @@
+version: "3.6"
+
+services:
+  database:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=pwd4lachesis
+      - POSTGRES_USER=usr4lachesis
+      - POSTGRES_DB=lachesis
+    ports:
+      - "5432:5432"
