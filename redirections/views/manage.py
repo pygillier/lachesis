@@ -10,3 +10,4 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
 class RedirectionListView(LoginRequiredMixin, ListView):
     model = Redirection
+    template_name = "manage/redirection_list.html"

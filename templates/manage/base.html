@@ -27,6 +27,7 @@
                 {% gravatar request.user.email 48 %}
             </div>
         </header>
+        {% include "manage/navbar.html" %}
         {% block content %}
         {% endblock content %}
         <!-- Javascript -->
