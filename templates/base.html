@@ -1,0 +1,23 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Manage bs" />
+        <meta name="keywords" content="ddd" />
+        <title>
+            {% block title %}
+                Lachesis
+            {% endblock title %}
+        </title>
+        {% bootstrap_css %}
+        {% block extra_css %}
+        {% endblock extra_css %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock content %}
+        {% bootstrap_javascript %}
+    </body>
+</html>

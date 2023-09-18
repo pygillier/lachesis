@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" type="text/css" />
+{% endblock extra_css %}
+{% block content %}
+    <div class="bgimg-1"
+         style="background-image: url('{% static '/img/homepage-cover.jpg' %}')">
+        <div class="caption">
+            <span class="border">Lachesis</span>
+            <br />
+            <span class="border">Redirections, batteries included</span>
+        </div>
+    </div>
+{% endblock content %}

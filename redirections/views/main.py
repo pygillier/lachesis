@@ -1,11 +1,17 @@
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import RedirectView as RView
+from django.views.generic import TemplateView
 
-from .models import Redirection
+from ..models import Redirection
 
 
-# Create your views here.
+# Application index
+class IndexView(TemplateView):
+    template_name = "redirections/index.html"
+
+
+# Primary redirection view
 class RedirectView(RView):
     def get(self, request, key):
         redirect = get_object_or_404(Redirection, key=key, status="published")
