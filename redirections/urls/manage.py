@@ -5,4 +5,7 @@ from ..views import manage
 
 app_name = "manage"
 
-urlpatterns = [path("", manage.IndexView.as_view(), name="index")]
+urlpatterns = [
+    path("", manage.IndexView.as_view(), name="index"),
+    path("redirections/", manage.RedirectionListView.as_view(), name="redirections"),
+]

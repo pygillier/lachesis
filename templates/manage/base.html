@@ -1,4 +1,4 @@
-{% load static %}
+{% load static gravatar %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,6 +19,14 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/manage.css' %}" />
     </head>
     <body id="body-pd">
+        <header class="header" id="header">
+            <div class="header_toggle">
+                <i class="bx bx-menu" id="header-toggle"></i>
+            </div>
+            <div class="header_img">
+                {% gravatar request.user.email 48 %}
+            </div>
+        </header>
         {% block content %}
         {% endblock content %}
         <!-- Javascript -->

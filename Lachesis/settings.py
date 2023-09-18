@@ -54,6 +54,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_bootstrap5",
+    "django_gravatar",
 ]
 
 # Debug apps
