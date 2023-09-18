@@ -112,10 +112,7 @@ WSGI_APPLICATION = "Lachesis.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db(
-        "DATABASE_URL",
-        default="postgres:///database",
-    ),
+    "default": env.db(default="postgres:///database"),
 }
 
 AUTH_USER_MODEL = "user.User"
