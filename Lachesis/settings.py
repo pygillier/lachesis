@@ -56,6 +56,12 @@ THIRD_PARTY_APPS = [
     "django_bootstrap5",
 ]
 
+# Debug apps
+if DEBUG:
+    THIRD_PARTY_APPS = THIRD_PARTY_APPS + [
+        "debug_toolbar",
+    ]
+
 LOCAL_APPS = [
     "user.apps.UserConfig",
     "redirections.apps.RedirectionsConfig",
@@ -75,6 +81,11 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE = MIDDLEWARE + [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
 
 ROOT_URLCONF = "Lachesis.urls"
 
@@ -167,3 +178,9 @@ STORAGES = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]

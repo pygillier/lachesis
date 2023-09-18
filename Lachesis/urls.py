@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -23,3 +24,8 @@ urlpatterns = [
     path("manage/", include("redirections.urls.manage")),
     path("", include("redirections.urls.main")),
 ]
+
+if settings.DEBUG:
+    urlpatterns = urlpatterns + [
+        path("__debug__/", include("debug_toolbar.urls")),
+    ]
