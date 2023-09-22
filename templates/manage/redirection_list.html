@@ -3,5 +3,32 @@
 {% block content %}
 <div class="height-100 bg-light">
     <h4>Redirections</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Target</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for redirection in redirections %}
+            <tr>
+                <td>{{ redirection.key }}</td>
+                <td>{{ redirection.redirection_code }}</td>
+                <td><a href="{{ redirection.target_url }}" target="_blank">{{ redirection.target_url }}</a></td>
+                <td><a href="{% url "manage:update" key=redirection.key %}" class="btn btn-secondary">Edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <a href="{% url "manage:new" %}" class="btn btn-primary">Add a redirection</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
 {% endblock content %}
