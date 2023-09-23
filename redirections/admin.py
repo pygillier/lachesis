@@ -5,8 +5,8 @@ from . import models
 
 @admin.register(models.Redirection)
 class RedirectionAdmin(admin.ModelAdmin):
-    list_display = ("key", "status", "human_http_code", "target_url")
-    exclude = ("key",)
+    list_display = ("slug", "status", "human_http_code", "target_url")
+    exclude = ("slug",)
 
     actions = ["make_published"]
 

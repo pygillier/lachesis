@@ -10,7 +10,7 @@ class Redirection(TimeStampedModel):
     STATUS = Choices("draft", "published")
     REDIRECTION_CODE = Choices("301", "302")
 
-    key = models.CharField(max_length=10, unique=True)
+    slug = models.SlugField(max_length=10, unique=True)
     target_url = models.URLField()
     redirection_code = StatusField(choices_name="REDIRECTION_CODE")
     status = StatusField()
@@ -21,12 +21,12 @@ class Redirection(TimeStampedModel):
     )
 
     def save(self, *args, **kwargs):
-        if not self.key:
-            self.key = get_random_string(8)
+        if not self.slug:
+            self.slug = get_random_string(8)
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.key
+        return self.slug
 
     def human_http_code(self):
         if self.redirection_code == "301":

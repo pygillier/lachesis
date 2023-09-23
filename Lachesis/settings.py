@@ -43,8 +43,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
-    "django.contrib.admin",
+    "django.contrib.humanize",  # Handy template tags
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
@@ -64,6 +63,7 @@ if DEBUG:
     ]
 
 LOCAL_APPS = [
+    "Lachesis.apps.LachesisAdminConfig",
     "user.apps.UserConfig",
     "redirections.apps.RedirectionsConfig",
     # Your stuff: custom apps go here

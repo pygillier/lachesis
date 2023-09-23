@@ -1,10 +1,16 @@
 {% extends "manage/base.html" %}
 {% load static django_bootstrap5 %}
-{% block title %}Add a redirection{% endblock %}
+{% block title %}
+    {% if object.pk %}
+        Update a redirection
+    {% else %}
+        Add a redirection
+    {% endif %}
+{% endblock title %}
 {% block content %}
     <form method="post" action="{% url "manage:new" %}" class="form">
-          {% csrf_token %}
+        {% csrf_token %}
         {% bootstrap_form form layout="floating" %}
-          {% bootstrap_button button_type="submit" content="OK" %}
+        {% bootstrap_button button_type="submit" content="OK" %}
     </form>
 {% endblock content %}
