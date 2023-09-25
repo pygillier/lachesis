@@ -8,9 +8,20 @@
     {% endif %}
 {% endblock title %}
 {% block content %}
-    <form method="post" action="{% url "manage:new" %}" class="form">
-        {% csrf_token %}
-        {% bootstrap_form form layout="floating" %}
-        {% bootstrap_button button_type="submit" content="OK" %}
-    </form>
+    <section class="height-100 bg-light">
+        <header>
+            {% if object.pk %}
+                <h3>Update a redirection</h3>
+            {% else %}
+                <h3>Add a redirection</h3>
+            {% endif %}
+        </header>
+        <main>
+            <form method="post" action="{% url "manage:new" %}" class="form">
+                {% csrf_token %}
+                {% bootstrap_form form layout="horizontal" %}
+                {% bootstrap_button button_type="submit" content="Add" %}
+            </form>
+        </main>
+    </section>
 {% endblock content %}

@@ -18,8 +18,15 @@
             <tbody>
                 {% for redirection in redirections %}
                     <tr>
-                        <td>{{ redirection.status|title }}</td>
-                        <td>{{ redirection.slug }}</td>
+                        <td>{{ redirection.get_status_display|title }}</td>
+                        <td>
+                            <span class="copy-link" data-link="{{ redirection.get_absolute_url }}">{{ redirection.slug }}</span>
+                            <a href="{{ redirection.get_absolute_url }}"
+                               title="Open in new tab/window"
+                               target="_blank">
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                        </td>
                         <td>{{ redirection.redirection_code }}</td>
                         <td>
                             <a href="{{ redirection.target_url }}" target="_blank">{{ redirection.target_url }}</a>

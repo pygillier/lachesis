@@ -23,14 +23,13 @@
             <div class="header_toggle">
                 <i class="bx bx-menu" id="header-toggle"></i>
             </div>
-            <div class="header_img">
-                {% gravatar request.user.email 48 %}
-            </div>
+            <div class="header_img">{% gravatar request.user.email 48 %}</div>
         </header>
         {% include "manage/navbar.html" %}
         {% block content %}
         {% endblock content %}
         <!-- Javascript -->
+        <script type="application/javascript" src='{% static 'js/jquery-3.7.1.min.js' %}'></script>
         <script type="application/javascript" src='{% static 'js/manage.js' %}'></script>
     </body>
 </html>

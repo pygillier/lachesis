@@ -6,5 +6,5 @@ app_name = "redirections"
 
 urlpatterns = [
     path("", main.IndexView.as_view(), name="index"),
-    path("r/<str:key>", main.RedirectView.as_view(), name="redirect"),
+    path("r/<str:slug>", main.RedirectView.as_view(), name="redirect"),
 ]

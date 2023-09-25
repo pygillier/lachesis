@@ -20,6 +20,11 @@ class Redirection(TimeStampedModel):
         on_delete=models.CASCADE,
     )
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+
+        return reverse("redirections:redirect", kwargs={"slug": self.slug})
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = get_random_string(8)
