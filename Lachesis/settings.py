@@ -143,6 +143,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# All auth
+LOGIN_REDIRECT_URL = "/manage/"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

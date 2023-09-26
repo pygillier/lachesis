@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n static django_bootstrap5 %}
+{% block title %}
+    Login - Lachesis
+{% endblock title %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}" />
+{% endblock extra_css %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card px-5 py-5" id="form1">
+                    <form class="login" method="post" action="{% url 'account_login' %}">
+                        <div class="form-data">
+                            {% csrf_token %}
+                            <div class="forms-inputs mb-4">{% bootstrap_field form.login %}</div>
+                            <div class="forms-inputs mb-4">{% bootstrap_field form.password %}</div>
+                            <div class="mb-3">
+                                <button class="btn btn-dark w-100">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
