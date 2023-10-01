@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 import environ
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,11 +46,15 @@ DJANGO_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.humanize",  # Handy template tags
+    "unfold",
+    "unfold.contrib.filters",
+    # "unfold.contrib.forms",
+    "django.contrib.admin",
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
-    "crispy_forms",
-    "crispy_bootstrap5",
+    # "crispy_forms",
+    # "crispy_bootstrap5",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -63,7 +69,6 @@ if DEBUG:
     ]
 
 LOCAL_APPS = [
-    "Lachesis.apps.LachesisAdminConfig",
     "user.apps.UserConfig",
     "redirections.apps.RedirectionsConfig",
     # Your stuff: custom apps go here
@@ -185,3 +190,34 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+# Unfold configuration
+UNFOLD = {
+    "SITE_TITLE": "Lachesis backend",
+    "SITE_HEADER": "Lachesis",
+    "SIDEBAR": {
+        "show_all_applications": True,
+        "show_search": False,
+        "navigation": [
+            {
+                "title": "",
+                "separator": False,  # Top border
+                "items": [
+                    {
+                        "title": _("Dashboard"),
+                        "icon": "dashboard",
+                        "link": reverse_lazy("admin:index"),
+                        "permission": lambda request: request.user.is_superuser,  # noqa
+                    },
+                    {
+                        "title": _("Redirections"),
+                        "icon": "people",
+                        "link": reverse_lazy(
+                            "admin:redirections_redirection_changelist"
+                        ),
+                    },
+                ],
+            },
+        ],
+    },
+}

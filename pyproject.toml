@@ -17,6 +17,7 @@ django-allauth = "^0.56.1"
 django-bootstrap5 = "^23.3"
 django-gravatar2 = "^1.4.4"
 psycopg = { version = "^3.1.9", extras = ["binary"] }
+django-unfold = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^1.4.1"
