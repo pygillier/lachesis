@@ -1,18 +1,25 @@
 from django.conf import settings
 from django.db import models
 from django.utils.crypto import get_random_string
+from django.utils.translation import gettext_lazy as _
 from model_utils import Choices
 from model_utils.fields import StatusField
 from model_utils.models import TimeStampedModel
 
 
 class Redirection(TimeStampedModel):
+    class RedirectionType(models.IntegerChoices):
+        PERMANENT = 301, _("Permanent")
+        TEMPORARY = 302, _("Temporary")
+
     STATUS = Choices("draft", "published")
-    REDIRECTION_CODE = Choices("301", "302")
 
     slug = models.SlugField(max_length=10, unique=True)
     target_url = models.URLField()
-    redirection_code = StatusField(choices_name="REDIRECTION_CODE")
+    redirection_type = models.IntegerField(
+        choices=RedirectionType.choices, default=RedirectionType.TEMPORARY
+    )
+
     status = StatusField()
 
     author = models.ForeignKey(
@@ -34,7 +41,7 @@ class Redirection(TimeStampedModel):
         return self.slug
 
     def human_http_code(self):
-        if self.redirection_code == "301":
+        if self.redirection_type == 301:
             return "Permanent (301)"
         else:
             return "Temporary (302)"

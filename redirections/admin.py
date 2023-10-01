@@ -7,8 +7,14 @@ from . import models
 
 @admin.register(models.Redirection)
 class RedirectionAdmin(ModelAdmin):
-    list_display = ("slug", "status", "http_code", "target_url", "link_copy")
-    list_filter = ("status", "redirection_code")
+    list_display = (
+        "slug",
+        "status",
+        "redirection_type",
+        "target_url",
+        "link_copy",
+    )
+    list_filter = ("status", "redirection_type")
     exclude = ("slug",)
 
     actions = ["make_published"]
@@ -20,13 +26,6 @@ class RedirectionAdmin(ModelAdmin):
             obj.get_absolute_url(),
             obj.target_url,
         )
-
-    @admin.display(description="HTTP redirection")
-    def http_code(self, obj: models.Redirection):
-        if obj.status == "301":
-            return "Permanent (301) "
-        else:
-            return "Temporary (302)"
 
     @admin.action(description="Publish selected redirections")
     def make_published(self, request, queryset) -> None:
