@@ -14,9 +14,13 @@ class IndexView(TemplateView):
 # Primary redirection view
 class RedirectView(RView):
     def get(self, request, slug):
-        redirect = get_object_or_404(Redirection, slug=slug, status="published")  # noqa
+        redirect = get_object_or_404(
+            Redirection,
+            slug=slug,
+            status=Redirection.RedirectionStatus.PUBLISHED,  # noqa
+        )
 
-        if redirect.redirection_code == "301":
+        if redirect.redirection_type == Redirection.RedirectionType.PERMANENT:
             return HttpResponsePermanentRedirect(redirect.target_url)
         else:
             return HttpResponseRedirect(redirect.target_url)
