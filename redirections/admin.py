@@ -14,6 +14,7 @@ class RedirectionAdmin(ModelAdmin):
         "target_url",
         "link_copy",
     )
+    list_filter_submit = True
     list_filter = ("status", "redirection_type")
     exclude = ("slug",)
 
@@ -29,4 +30,4 @@ class RedirectionAdmin(ModelAdmin):
 
     @admin.action(description="Publish selected redirections")
     def make_published(self, request, queryset) -> None:
-        queryset.update(status="published")
+        queryset.update(status=models.Redirection.RedirectionStatus.PUBLISHED)
