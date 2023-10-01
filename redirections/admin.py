@@ -11,6 +11,7 @@ class RedirectionAdmin(ModelAdmin):
         "slug",
         "status",
         "redirection_type",
+        "staged_redirect",
         "target_url",
         "link_copy",
     )

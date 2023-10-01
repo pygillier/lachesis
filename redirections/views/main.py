@@ -1,5 +1,4 @@
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import RedirectView as RView
 from django.views.generic import TemplateView
 
@@ -14,13 +13,27 @@ class IndexView(TemplateView):
 # Primary redirection view
 class RedirectView(RView):
     def get(self, request, slug):
-        redirect = get_object_or_404(
+        redirection = get_object_or_404(
             Redirection,
             slug=slug,
             status=Redirection.RedirectionStatus.PUBLISHED,  # noqa
         )
 
-        if redirect.redirection_type == Redirection.RedirectionType.PERMANENT:
-            return HttpResponsePermanentRedirect(redirect.target_url)
+        if redirection.staged_redirect:
+            # Staged redirection, render the page and let
+            # the user click on link afterward;
+            return render(
+                request=request,
+                template_name="redirections/staged.html",
+                context={"redirection": redirection},
+            )
+
         else:
-            return HttpResponseRedirect(redirect.target_url)
+            # Direct redirection
+            permanent = (
+                True
+                if redirection.redirection_type
+                == Redirection.RedirectionType.PERMANENT  # noqa
+                else False
+            )
+            return redirect(redirection.target_url, permanent=permanent)

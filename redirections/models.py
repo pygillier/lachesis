@@ -23,6 +23,10 @@ class Redirection(TimeStampedModel):
         choices=RedirectionType.choices, default=RedirectionType.TEMPORARY
     )
 
+    staged_redirect = models.BooleanField(
+        default=False, blank=False, null=False
+    )  # noqa
+
     status = models.CharField(
         max_length=2,
         choices=RedirectionStatus.choices,

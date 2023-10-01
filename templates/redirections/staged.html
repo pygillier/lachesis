@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+{% block title %}
+    Redirection to {{ redirection.target_url }} - Lachesis
+{% endblock title %}
+{% block extra_css %}
+    <style type="text/css">
+        html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    font-size: .8em;
+    text-align: right;
+}
+a.target {
+    font-weight: bold;
+}
+    </style>
+{% endblock extra_css %}
+{% block content %}
+    <article class="container mt-4 p-2" id="staged">
+        <header>
+            <h1>You're following a redirection!</h1>
+        </header>
+        <main class="mb-2">
+            <p>
+                You're following a redirection to this URL: <a class="target" rel="noreferrer" href="{{ redirection.target_url }}">{{ redirection.target_url }}</a>.
+            </p>
+            <p>You can click on it to visit the website or close this page.</p>
+            <p>In order to protect your privacy when clicking the link to the website:</p>
+            <ol>
+                <li>
+                    A <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/noreferrer"
+    target="_blank"><code>rel="noreferrer"</code></a> attribute is defined on the link.
+                </li>
+                <li>Statistic tracking finishes at the current page. Access to the target link won't be tracked.</li>
+            </ol>
+        </main>
+    </article>
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Service powered by <a href='https://github.com/pygillier/lachesis' target='_blank'>Lachesis</a>, an open source redirections manager.
+            </p>
+        </div>
+    </footer>
+{% endblock content %}
