@@ -2,7 +2,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.translation import gettext_lazy as _
-from model_utils import Choices
 from model_utils.models import TimeStampedModel
 
 
@@ -14,8 +13,6 @@ class Redirection(TimeStampedModel):
     class RedirectionStatus(models.TextChoices):
         DRAFT = "dr", _("Draft")
         PUBLISHED = "pu", _("Published")
-
-    STATUS = Choices("draft", "published")
 
     slug = models.SlugField(max_length=10, unique=True)
     target_url = models.URLField()
