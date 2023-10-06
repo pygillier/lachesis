@@ -53,13 +53,12 @@ DJANGO_APPS = [
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
-    # "crispy_forms",
-    # "crispy_bootstrap5",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "django_bootstrap5",
     "django_gravatar",
+    "constance",
 ]
 
 # Debug apps
@@ -190,6 +189,10 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+# Constance default config
+CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
+CONSTANCE_CONFIG = {}
 
 # Unfold configuration
 UNFOLD = {
